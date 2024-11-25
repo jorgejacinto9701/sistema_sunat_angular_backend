@@ -2,7 +2,7 @@ package com.prestamo.util;
 
 public class AppSettings {
 
-	public static final String URL_CROSS_ORIGIN = "http://localhost:4200";
+	public static final String URL_CROSS_ORIGIN = "*";
 	
 	public static final int CATALOGO_01_TIPO_DE_ENDIDAD_BANCARIA = 1;
 	public static final int CATALOGO_02_TIPO_DE_MONEDA = 2;
