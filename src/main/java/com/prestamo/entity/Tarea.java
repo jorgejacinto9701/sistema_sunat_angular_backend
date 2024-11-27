@@ -35,5 +35,7 @@ public class Tarea {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss", timezone = "America/Lima")
 	private Date fechaRegistro;
 
+	private String categoria;
+	private String prioridad;
 	
 }

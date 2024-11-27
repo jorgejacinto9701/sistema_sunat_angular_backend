@@ -35,4 +35,9 @@ public class TareaServiceImpl implements TareaService{
 		return repository.findAll();
 	}
 
+	@Override
+	public List<Tarea> listaTareaPorCategoriaPrioridad(String categoria, String prioridad) {
+		return repository.listaTareaPorCategoriaPrioridad(categoria, prioridad);
+	}
+
 }

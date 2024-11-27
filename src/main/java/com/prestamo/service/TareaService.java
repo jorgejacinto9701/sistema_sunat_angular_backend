@@ -11,6 +11,6 @@ public interface TareaService {
 	public abstract List<Tarea> listaTareaPorDescripcionLike(String descripcion);
 	public abstract void eliminaTarea(int idTarea);
 	public abstract List<Tarea> listaTarea();
-	
+	public abstract List<Tarea> listaTareaPorCategoriaPrioridad(String categoria,String  prioridad);
 	
 }

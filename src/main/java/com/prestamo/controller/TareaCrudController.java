@@ -28,16 +28,16 @@ import com.prestamo.util.AppSettings;
 public class TareaCrudController {
 	
 	@Autowired
-	private TareaService TareaService;
+	private TareaService tareaService;
 	
 	@GetMapping("/listaTareaPorNombreLike/{var}")
 	@ResponseBody
 	public ResponseEntity<?> listaTareaPorNombreLike(@PathVariable("var") String descripcion){
 		List<Tarea> lstSalida = null;
 		if (descripcion.equals("todos")) {
-			lstSalida =TareaService.listaTarea();
+			lstSalida =tareaService.listaTarea();
 		}else {
-			lstSalida =TareaService.listaTareaPorDescripcionLike(descripcion +  "%");
+			lstSalida =tareaService.listaTareaPorDescripcionLike(descripcion +  "%");
 		}
 		return ResponseEntity.ok(lstSalida);
 	}
@@ -49,7 +49,7 @@ public class TareaCrudController {
 			obj.setIdTarea(0);
 			obj.setFechaRegistro(new Date());
 			
-			Tarea objSalida = TareaService.insertarActualizaTarea(obj);
+			Tarea objSalida = tareaService.insertarActualizaTarea(obj);
 			if (objSalida == null) {
 				salida.put("mensaje", AppSettings.MENSAJE_REG_ERROR);
 			} else {
@@ -67,7 +67,7 @@ public class TareaCrudController {
 	public ResponseEntity<Map<String, Object>> actualizaTarea(@RequestBody Tarea obj) {
 		Map<String, Object> salida = new HashMap<>();
 		try {
-			Tarea objSalida = TareaService.insertarActualizaTarea(obj);
+			Tarea objSalida = tareaService.insertarActualizaTarea(obj);
 			if (objSalida == null) {
 				salida.put("mensaje", AppSettings.MENSAJE_ACT_ERROR);
 			} else {
@@ -86,7 +86,7 @@ public class TareaCrudController {
 	public ResponseEntity<Map<String, Object>> eliminaTarea(@PathVariable("id") int idTarea) {
 		Map<String, Object> salida = new HashMap<>();
 		try {
-			TareaService.eliminaTarea(idTarea);
+			tareaService.eliminaTarea(idTarea);
 			salida.put("mensaje", AppSettings.MENSAJE_ELI_EXITOSO + " Ejemplo de ID ==> " + idTarea + "." );
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -95,4 +95,13 @@ public class TareaCrudController {
 		return ResponseEntity.ok(salida);
 	}
 
+	
+	@GetMapping("/listaTareaPorCategoriaPrioridad/{categoria}/{prioridad}")
+	@ResponseBody
+	public ResponseEntity<?> listaTareaPorCategoriaPrioridad(@PathVariable String categoria, @PathVariable String prioridad){
+		List<Tarea> lstSalida = tareaService.listaTareaPorCategoriaPrioridad(categoria, prioridad);
+		return ResponseEntity.ok(lstSalida);
+	}
+	
+	
 }
